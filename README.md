@@ -4,12 +4,12 @@ This is a movie website where you are able to browse/search for movies that you 
  
 # Prerequisites-
 
-PHP
-NodeJS
-XAMPP
-Materializecss
-A TMDB API key
-A dataset containing movie titles and tmdbids
+- PHP
+- NodeJS
+- XAMPP
+- Materializecss
+- A TMDB API key
+- A dataset containing movie titles and tmdbids
 
 # Installing -
 
