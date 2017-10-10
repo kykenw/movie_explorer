@@ -24,8 +24,17 @@ if(isset($_POST['register_username']) && isset($_POST['register_password'])) {
     if($result) {
       if($result->num_rows>0){
         $error = 'That username is already taken';
+        exit($error);
       }
     }
+    $r1= $conn->query("insert into users values (null, '".$username."', sha1('".$password."'))");
+    if($r1) {
+      $r2 = $conn->query("create table if not exists ".$username."(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, title VARCHAR(50) NOT NULL, posterpath VARCHAR(100) NOT NULL, url VARCHAR(150) NOT NULL)");
+      if(!$r2) {
+        $error = "unable to create users watchlist";
+      }
+    }
+
     exit($error);
 }
 //try to login
@@ -422,7 +431,7 @@ function create_register($title) {
                <div class = "input-field col s4">
                   <i class = "material-icons prefix">account_circle</i>
                   <input placeholder="username" value="username" id="username"
-                     type="text" name="username" class="active validate" required />
+                     type="text" name="register_username" class="active validate" required />
                   <label for="name">Username</label>
                </div>
             </div>
@@ -430,7 +439,7 @@ function create_register($title) {
               <div class = "input-field col s4">
               <i class = "material-icons prefix">lock</i>      
                  <label for="password">Password</label>
-                 <input name="password" id="password" type="password" placeholder="Password"
+                 <input name="register_password" id="password" type="password" placeholder="Password"
                     class="validate" required />          
               </div>
             </div>          

@@ -88,7 +88,7 @@ $(document).ready(function () {
 
     $.ajax(
         {
-            url: 'login.php',
+            url: 'register.php',
             method: 'POST',
             data: {
                 register_username: username,
